@@ -4,12 +4,12 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 
 class MyStack {
-    Stack<Integer> stack;
-    
+    private Stack<Integer> stack;
+
     public MyStack() {
         this.stack = new Stack<>();
     }
-    
+
     public void empty() {
         if (stack.empty()) {
             System.out.println(1);
@@ -21,21 +21,21 @@ class MyStack {
     public void push(int data) {
         stack.push(data);
     }
-    
+
     public void pop() {
-        if(stack.isEmpty()) {
+        if (stack.isEmpty()) {
             System.out.println(-1);
         } else {
             System.out.println(stack.pop());
         }
     }
-    
+
     public void size() {
         System.out.println(stack.size());
     }
-    
+
     public void top() {
-        if(stack.isEmpty()) {
+        if (stack.isEmpty()) {
             System.out.println(-1);
         } else {
             System.out.println(stack.peek());
@@ -48,38 +48,26 @@ public class Main {
         MyStack myStack = new MyStack();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        
+
         for (int i = 0; i < N; i++) {
-            String command = "";
-            int data = 0;
-            String[] strArr = br.readLine().split(" ");
-            if (strArr.length == 1) {
-                command = strArr[0];
+            String[] command = br.readLine().split(" ");
+            switch(command[0]) {
+                case "empty":
+                    myStack.empty();
+                    break;
+                case "push":
+                    myStack.push(Integer.parseInt(command[1]));
+                    break;
+                case "pop":
+                    myStack.pop();
+                    break;
+                case "top":
+                    myStack.top();
+                    break;
+                case "size":
+                    myStack.size();
+                    break;
             }
-            if (strArr.length == 2) {
-                command = strArr[0];
-                data = Integer.parseInt(strArr[1]);
-            }
-            if (command.equals("empty")) {
-                myStack.empty();
-            }
-            if (command.equals("push")) {
-                myStack.push(data);
-            }
-            if (command.equals("pop")) {
-                myStack.pop();
-            }
-            if (command.equals("top")) {
-                myStack.top();
-            }
-            if (command.equals("size")) {
-                myStack.size();
-            }
-            
         }
-    
     }
 }
-
-
-
