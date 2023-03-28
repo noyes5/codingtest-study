@@ -10,11 +10,11 @@ class MyStack {
         this.stack = new Stack<>();
     }
 
-    public void empty() {
+    public int empty() {
         if (stack.empty()) {
-            System.out.println(1);
+            return 1;
         } else {
-            System.out.println(0);
+            return 0;
         }
     }
 
@@ -22,23 +22,23 @@ class MyStack {
         stack.push(data);
     }
 
-    public void pop() {
+    public int pop() {
         if (stack.isEmpty()) {
-            System.out.println(-1);
+            return -1;
         } else {
-            System.out.println(stack.pop());
+            return stack.pop();
         }
     }
 
-    public void size() {
-        System.out.println(stack.size());
+    public int size() {
+        return stack.size();
     }
 
-    public void top() {
+    public int top() {
         if (stack.isEmpty()) {
-            System.out.println(-1);
+            return -1;
         } else {
-            System.out.println(stack.peek());
+            return stack.peek();
         }
     }
 }
@@ -47,27 +47,29 @@ public class Main {
     public static void main(String[] args) throws NumberFormatException, IOException {
         MyStack myStack = new MyStack();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
             String[] command = br.readLine().split(" ");
             switch(command[0]) {
                 case "empty":
-                    myStack.empty();
+                    sb.append(myStack.empty() + "\n");
                     break;
                 case "push":
                     myStack.push(Integer.parseInt(command[1]));
                     break;
                 case "pop":
-                    myStack.pop();
+                    sb.append(myStack.pop() + "\n");
                     break;
                 case "top":
-                    myStack.top();
+                    sb.append(myStack.top() + "\n");
                     break;
                 case "size":
-                    myStack.size();
+                    sb.append(myStack.size() + "\n");
                     break;
             }
         }
+        System.out.println(sb);
     }
 }
