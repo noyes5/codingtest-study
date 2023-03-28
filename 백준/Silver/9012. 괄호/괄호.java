@@ -4,34 +4,31 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class Main {
-    public static void main(String[] args) throws NumberFormatException, IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
             Stack<Character> stack = new Stack<>();
-            int count = 0;
-            String[] strArr = br.readLine().split("");
-            for (String str : strArr) {
-                if (count < 0) {
-                    count = -1;
-                    break;
-                }
-                if (str.equals("(")) {
-                    stack.push('(');
-                    count++;
-                }
-                if (str.equals(")")) {
-                    stack.push(')');
-                    count--;
+            String str = br.readLine();
+            boolean isVPS = true;
+            for (int j = 0; j < str.length(); j++) {
+                char c = str.charAt(j);
+                if (c == '(') {
+                    stack.push(c);
+                } else if (c == ')') {
+                    if (stack.isEmpty()) {
+                        isVPS = false;
+                        break;
+                    }
+                    stack.pop();
                 }
             }
-            if (count == 0) {
-                System.out.println("YES");
-            } else {
+            if (!stack.isEmpty() || !isVPS) {
                 System.out.println("NO");
+            } else {
+                System.out.println("YES");
             }
         }
-
     }
 }
