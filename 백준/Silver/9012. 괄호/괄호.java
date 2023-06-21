@@ -1,34 +1,37 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Stack;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
         int N = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < N; i++) {
-            Stack<Character> stack = new Stack<>();
-            String str = br.readLine();
-            boolean isVPS = true;
-            for (int j = 0; j < str.length(); j++) {
-                char c = str.charAt(j);
-                if (c == '(') {
-                    stack.push(c);
-                } else if (c == ')') {
-                    if (stack.isEmpty()) {
-                        isVPS = false;
-                        break;
-                    }
-                    stack.pop();
-                }
-            }
-            if (!stack.isEmpty() || !isVPS) {
-                System.out.println("NO");
+        while (N-- > 0) {
+            sb.append(getVPS(br.readLine())).append('\n');
+        }
+        System.out.println(sb);
+
+    }
+
+    public static String getVPS(String s) {
+        int count = 0;
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                count++;
+            } else if (count == 0) {
+                return "NO";
             } else {
-                System.out.println("YES");
+                count--;
             }
         }
+
+        if (count == 0) {
+            return "YES";
+        } else {
+            return "NO";
+        }
+
     }
 }
