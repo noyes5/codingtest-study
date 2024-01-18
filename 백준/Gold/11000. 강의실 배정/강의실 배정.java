@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 
-// 1. 강의 시작 시간 기준으로 정렬한다.
-// 2. 강의 시작 시간이 앞에서 구한 끝나는 시간 이상인 것을 고른다.
-// 3. 2의 과정으로 계속 붙이는데, 만약 T가 10^9를 초과하면 붙이지 않는다.
-// 4. 완성되었으면 cnt +1
-// 5. 1의 과정을 반복한다.
+// 1. 강의 시작 시간 기준으로 배열을 정렬한다.
+// 2. 강의 종료시간을 담을 우선순위 큐를 만든다.
+// 3. 배열을 순회한다.
+// 4. 큐가 비어있으면 꺼낸 배열의 강의 종료시간 값을 넣는다.
+// 4-1. 만약 비어있지 않으면 peek하여 배열의 시작시간 >= 종료시간인 경우 poll한다.
+// 5. 꺼낸 배열의 종료시간을 add한다.
+// 3의 과정을 반복한다음 큐의 크기를 구하면 답.
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
