@@ -14,16 +14,19 @@ class Solution {
         while (completedJob.size() != N) {
             int idx = startIdx;
             
-            while (!waitJob.isEmpty()) {
+            int size = waitJob.size();
+            
+            for (int i = 0; i < size; i++) {
                 int now = waitJob.poll();
                 now += speeds[idx++];
-
-                progressJob.offer(now);     
+                progressJob.offer(now);
             }
             
             int count = 0;
             
-            while (!progressJob.isEmpty()) {
+            int size2 = progressJob.size();
+            
+            for (int i = 0; i < size2; i++) {
                 if (progressJob.peek() < 100) {
                     waitJob = progressJob;
                     progressJob = new LinkedList<>();
@@ -31,12 +34,9 @@ class Solution {
                 }
                 
                 int now = progressJob.poll();
-                
-                if (now >= 100) {
-                    count++;
-                    completedJob.add(now);
-                    startIdx++;
-                }
+                count++;
+                completedJob.add(now);
+                startIdx++;
             }
             
             if (count != 0) {
