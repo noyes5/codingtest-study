@@ -1,38 +1,40 @@
 class Solution {
     
-    private int arrGcd(int[] arr) {
-        int result = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            result = gcd(result, arr[i]);
+    private int getArrGcd(int[] arr) {
+        int gcd = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            gcd = getGcd(gcd, arr[i]);
         }
         
-        return result;
+        return gcd;
     }
     
-    private int gcd(int a, int b) {
+    private int getGcd(int a, int b) {
         while (b != 0) {
-            int tmp = a % b;
+            int temp = a % b;
             a = b;
-            b = tmp;
+            b = temp;
         }
-        return Math.abs(a);
+        
+        return a;
     }
     
-    private boolean valid(int g, int[] other) {
-        for (int x : other) {
-            if (x % g == 0) {
+    private boolean valid(int a, int[] other) {
+        for (int o : other) {
+            if (o % a == 0) {
                 return false;
             }
         }
         return true;
     }
     
-    
+
     public int solution(int[] arrayA, int[] arrayB) {
-        int gA = arrGcd(arrayA);
-        int gB = arrGcd(arrayB);
+        int gA = getArrGcd(arrayA);
+        int gB = getArrGcd(arrayB);
         
         int answer = 0;
+        
         if (valid(gA, arrayB)) {
             answer = Math.max(answer, gA);
         }
