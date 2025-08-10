@@ -1,22 +1,17 @@
 import math
 
-def arr_gcd(arr):
+def get_arr_gcd(arr):
     gcd = arr[0]
-    for x in arr[1:]:
+    for x in arr[1:]:  
         gcd = math.gcd(gcd, x)
-    
     return gcd
 
-def valid(gcd, other):
-    for x in other:
-        if x % gcd == 0:
-            return False
-        
-    return True
+def valid(a, other):
+	return all(o % a != 0 for o in other)
 
 def solution(arrayA, arrayB):
-    gA = arr_gcd(arrayA)
-    gB = arr_gcd(arrayB)
+    gA = get_arr_gcd(arrayA)
+    gB = get_arr_gcd(arrayB)
 
     answer = 0
     if valid(gA, arrayB):
